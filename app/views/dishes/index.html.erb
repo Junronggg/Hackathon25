@@ -1,0 +1,26 @@
+<h1>Find Dishes by Ingredients</h1>
+
+<%= form_with url: '/dishes_by_ingredients', method: :get, local: true do |form| %>
+  <fieldset>
+    <legend>Select Ingredients:</legend>
+    <% @ingredients.each do |ingredient| %>
+      <%= check_box_tag 'ingredients[]', ingredient.name %>
+      <%= label_tag "ingredients_#{ingredient.name}", ingredient.name %><br>
+    <% end %>
+  </fieldset>
+  <%= submit_tag 'Find Dishes' %>
+<% end %>
+
+<% if @dishes.present? %>
+  <h2>Matching Dishes:</h2>
+  <ul>
+    <% @dishes.each do |dish| %>
+      <li>
+        <strong><%= dish.name %></strong> - 
+        <a href="<%= dish.video_url %>" target="_blank">Watch how to cook</a>
+      </li>
+    <% end %>
+  </ul>
+<% elsif params[:ingredients].present? %>
+  <p>No dishes found for the selected ingredients.</p>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Random Dish</h1>
+
+<% if @dish %>
+  <p><strong>Name:</strong> <%= @dish.name %></p>
+  <p><strong>Watch How to Cook:</strong> <a href="<%= @dish.video_url %>" target="_blank"><%= @dish.video_url %></a></p>
+<% else %>
+  <p>No dishes available.</p>
+<% end %>
+
+<%= link_to 'Back to Home', home_path, style: 'text-decoration: none; color: #2196F3;' %>
